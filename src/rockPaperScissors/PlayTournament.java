@@ -13,7 +13,8 @@ public class PlayTournament {
 		new AlwaysRandom(),
 		new M1ngXUA(),
 		new PhoyhKillA(),
-		new M1ngXUB()
+		new M1ngXUB(),
+		new SequenceMemorizer()
 	};
 	
 	public static void main(String[] args) {

@@ -1,26 +1,31 @@
 package rockPaperScissors;
 
-import rockPaperScissors.strategies.*;
-import rockPaperScissors.strategies.m1ngXu.*;
-import rockPaperScissors.strategies.phoyh.*;
+import java.util.Set;
+
+import org.reflections.Reflections;
 
 public class PlayTournament {
 
-	private static Strategy[] STRATEGIES = new Strategy[] {
-		new AlwaysPaper(),
-		new AlwaysScissors(),
-		new AlwaysRock(),
-		new AlwaysRandom(),
-		new M1ngXUA(),
-		new PhoyhKillA(),
-		new M1ngXUB(),
-		new SequenceMemorizer()
-	};
-	
 	public static void main(String[] args) {
-		Tournament t = new Tournament(3, 100, STRATEGIES);
+		
+		Tournament t = new Tournament(3, 100, getStrategies());
 		t.play();
 		System.out.println("\n" + t);
 	}
 
+	private static Strategy[] getStrategies() {
+		Reflections reflections = new Reflections("rockPaperScissors");    
+		Set<Class<? extends Strategy>> strategyClasses =
+				reflections.getSubTypesOf(Strategy.class);
+		Strategy[] result = new Strategy[strategyClasses.size()];
+		int index = 0;
+		for (Class<? extends Strategy> c: strategyClasses) {
+			try {
+				result[index++] = c.newInstance();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	};
 }

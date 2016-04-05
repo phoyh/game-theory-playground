@@ -7,9 +7,9 @@ import rockPaperScissors.strategies.*;
 public class PlayMatch {
 
 	public static void main(String[] args) {
-		Strategy a = new SequenceMemorizer();
-		Strategy b = new PhoyhKillA();
-		Match m = new Match(a, b, 40, true, true);
+		Strategy a = new M1ngXUWinner();
+		Strategy b = new PhoyhKillAll();
+		Match m = new Match(a, b, 100, true, true);
 		m.play();
 		System.out.println("\nFirst percentage: " + m.getFirstWinPercentage());
 	}

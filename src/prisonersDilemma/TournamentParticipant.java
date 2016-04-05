@@ -1,6 +1,5 @@
 package prisonersDilemma;
 
-import java.text.DecimalFormat;
 
 public class TournamentParticipant implements Comparable<TournamentParticipant> {
 	Strategy strategy;
@@ -32,10 +31,7 @@ public class TournamentParticipant implements Comparable<TournamentParticipant> 
 	}
 	
 	public String toString() {
-		String str = new DecimalFormat("    #0.00").format(this.getAveragePayoff());
-		str = str.substring(str.length() - 8);
-		str += " by " + this.strategy.getClass().getSimpleName();
-		return str;
+		return "" + this.getAveragePayoff() + " by " + this.strategy.getClass().getSimpleName();
 	}
 
 }

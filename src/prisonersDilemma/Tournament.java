@@ -10,10 +10,12 @@ public class Tournament {
 	List<Match> matches;
 	List<TournamentParticipant> matchFirstOpponent;
 	List<TournamentParticipant> matchSecondOpponent;
+	boolean isShowMatchResults;
 	
 	public Tournament(int numberOfMatchesAmongEachParticipantPair,
-			int numberOfRoundsPerMatch,
+			int numberOfRoundsPerMatch, boolean isShowMatchResults,
 			Strategy[] strategies) {
+		this.isShowMatchResults = isShowMatchResults;
 		this.participants = new ArrayList<TournamentParticipant>();
 		for (Strategy s: strategies) {
 			this.participants.add(new TournamentParticipant(s));
@@ -36,7 +38,7 @@ public class Tournament {
 								p2.getStrategy(),
 								numberOfRoundsPerMatch,
 								false,
-								true));
+								isShowMatchResults));
 						matchFirstOpponent.add(p1);
 						matchSecondOpponent.add(p2);
 					}
@@ -61,6 +63,10 @@ public class Tournament {
 			p1.notifyOfMatchResult(m.getFirstPayoff());
 			p2.notifyOfMatchResult(m.getSecondPayoff());
 		}
+	}
+	
+	public List<TournamentParticipant> getParticipants() {
+		return participants;
 	}
 
 	public String toString() {
